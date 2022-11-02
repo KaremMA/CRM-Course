@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
+import { FormsModule } from '@angular/forms';
+import { NbButtonModule, NbInputModule } from '@nebular/theme';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -11,7 +14,11 @@ import { AuthComponent } from './auth.component';
   ],
   imports: [
     CommonModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    FormsModule,
+    NbInputModule,
+    NbButtonModule, 
+    FontAwesomeModule
   ]
 })
 export class AuthModule { }

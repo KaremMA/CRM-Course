@@ -1,0 +1,109 @@
+.main-content{
+
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none !important;
+
+    .main-box{
+
+        width: 800px;
+        height: 500px;
+        background-color: #FFF;
+        border-radius: 15px;
+        overflow: hidden;
+        padding: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: row;
+
+        .sub-box{
+
+            width: 50%;
+            height: 100%;
+        }
+
+        .right-box{
+
+            img{
+
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+        }
+        
+        .left-box{
+
+            .login-form{
+
+                width: 100%;
+                height: 100%;
+                padding: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-flow: column;
+            }
+        }
+    }
+
+}
+
+.form-feild{
+
+    position: relative;
+
+    .form-title{
+
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .icon{
+
+        position: absolute;
+        left: 9px;
+        top: 35px;
+        color: #3f51b5;
+    }
+
+    .form-control{
+
+        padding-right: 30px;
+        padding-left: 30px;
+    }
+
+    .eye{
+
+        right: 9px;
+        left: unset;
+        color: #923fb5;
+        cursor: pointer;
+    }
+}
+
+.login-title{
+
+    font-size: 20px;
+    font-weight: bold;
+    color: #3f51b5;
+
+}
+
+small{
+
+    color: #F00;
+}
+
+.error-message{
+
+    font-weight: bold;
+    text-align: center;
+    margin: 15px 0;
+    color: #e91e63;
+}

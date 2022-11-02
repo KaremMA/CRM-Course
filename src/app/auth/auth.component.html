@@ -1,1 +1,55 @@
-<p>auth works!</p>
+<div class="main-content">
+
+    <div class="main-box">
+        <div class="sub-box left-box">
+            <div class="login-form">
+                <form #LogInForm="ngForm" (ngSubmit)="onSubmit()">
+                    <div class="form-logo text-center mb-3">
+                        <img src="./assets/imgs/logo.png">
+                        <h3 class="login-title">Welcome Back!</h3>
+                    </div>
+                    <p class="m-0 mb-4 text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
+                        modi nulla, ea animi</p>
+
+                        <h3 *ngIf="Error" class="error-message">{{ErrorMessage}}</h3>
+                        
+                    <div class="form-feild mb-3">
+                        <h4 class="form-title">Username:</h4>
+
+                        <input 
+                            #username="ngModel" 
+                            [(ngModel)]="LogInObject.Username" 
+                            name="username" required
+                            type="text" class="form-control">
+
+                        <small *ngIf="username.invalid && username.touched">Username is required</small>
+
+                        <fa-icon class="icon" [icon]="['fas', 'user']"></fa-icon>
+                    </div>
+                    <div class="form-feild mb-3">
+                        <h4 class="form-title">Password:</h4>
+
+                        <input 
+                            #password="ngModel" 
+                            [(ngModel)]="LogInObject.Password"
+                            name="password" required
+                            [type]="ViewPassword ? 'text' : 'password'" class="form-control">
+
+                            <small *ngIf="password.invalid && password.touched">Password is required</small>
+
+
+                        <fa-icon class="icon" [icon]="['fas', 'unlock']"></fa-icon>
+                        <fa-icon 
+                            (click)="ViewPassword = !ViewPassword" class="icon eye"
+                            [icon]="['fas', ViewPassword ? 'eye-slash' : 'eye']"></fa-icon>
+                    </div>
+                    <button  [disabled]="LogInForm.invalid"  type="submit" class="btn btn-success d-block w-100">LogIn</button>
+                </form>
+            </div>
+        </div>
+        <div class="sub-box right-box">
+            <img src="./assets/imgs/auth-bg.png">
+        </div>
+    </div>
+
+</div>
