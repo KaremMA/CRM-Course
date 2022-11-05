@@ -1,0 +1,38 @@
+.main-header{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .project-log-title{
+
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        flex-direction: row-reverse;
+
+        .project-name{
+            
+            font-size: 20px;
+            margin: 0;
+            margin-right: 10px;
+        }
+
+        .img{
+
+            width: 40px;
+        }
+    }
+    .user-actions{
+
+        nb-action{
+            cursor: pointer;
+            user-select: none;
+            
+            fa-icon{
+                font-size: 18px;
+                color: #3c5dab;
+            }
+        }
+    }
+}

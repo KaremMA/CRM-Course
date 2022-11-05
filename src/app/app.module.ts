@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbIconLibraries } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbIconLibraries, NbSidebarModule, NbMenuModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { far } from '@fortawesome/free-regular-svg-icons';
@@ -23,7 +23,9 @@ import { HttpClientModule } from '@angular/common/http';
     NbLayoutModule,
     NbEvaIconsModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    NbSidebarModule.forRoot(),
+    NbMenuModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

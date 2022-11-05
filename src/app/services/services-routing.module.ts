@@ -8,6 +8,11 @@ const routes: Routes = [
     component: ServicesComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'services-list',
+        pathMatch: 'full'
+      },
+      {
         path: 'services-list',
         loadChildren: () => import("./service-list/service-list.module").then(m => m.ServiceListModule)
       },

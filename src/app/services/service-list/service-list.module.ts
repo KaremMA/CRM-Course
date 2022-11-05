@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ServiceListComponent } from './service-list.component';
+import { ServiceListRoutingModule } from './service-list-routing.module';
 
 
 
@@ -9,7 +10,8 @@ import { ServiceListComponent } from './service-list.component';
     ServiceListComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ServiceListRoutingModule
   ]
 })
 export class ServiceListModule { }
