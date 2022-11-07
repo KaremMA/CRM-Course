@@ -47,7 +47,7 @@ export class AuthComponent implements OnInit {
         if(res.StatusCode == 200){
 
           localStorage.setItem("UserData", JSON.stringify(res.JsonObject));
-          localStorage.setItem("Token", res.JsonObject.AccessToken)
+          localStorage.setItem("Token", res.JsonObject.AccessToken + ':' + res.JsonObject.UserName)
           this.router.navigateByUrl("/home");
           
         }else{

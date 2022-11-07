@@ -6,20 +6,15 @@ import { ConfigService } from '../config.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class ServiceService {
 
   constructor(
     private http:HttpClient,
     private config:ConfigService
   ) { }
 
-  LogInToSystem(LogInObject:any):Observable<any>{
+  getServicesList(ServiceFilter):Observable<any>{
 
-    return this.http.post(`${this.config.getAPILink()}/api/Users/Login`, LogInObject);
-  }
-
-  getToken(){
-
-    return localStorage.getItem("Token");
+    return this.http.post(`${this.config.getAPILink()}/api/Services/Requests/Get`, ServiceFilter)
   }
 }

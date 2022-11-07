@@ -1,0 +1,33 @@
+.card-filter{
+
+    width: 600px;
+    height: 450px;
+    border: none !important;
+    overflow: hidden;
+}
+.card-header{
+
+    background-color: var(--color-info-600);
+    padding: 5px;
+    text-align: right;
+    color: #FFF;
+}
+
+.feild-filter{
+
+    h3{
+        font-size: 12px;
+        text-align: right;
+        font-weight: bold;
+        margin: 0;
+        margin-bottom: 5px;
+    }
+
+    select.form-control{
+
+        height: 38px;
+        font-size: 14px;
+        padding: 3px;
+        direction: rtl;
+    }
+}

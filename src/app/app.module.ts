@@ -1,15 +1,27 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbIconLibraries, NbSidebarModule, NbMenuModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbIconLibraries, NbSidebarModule, NbMenuModule, NbDialogModule } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { fas } from '@fortawesome/free-solid-svg-icons';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AgGridModule } from 'ag-grid-angular';
+import { ConfigService } from './@services/config.service';
+import { TokenIntrsiptService } from './@services/token-intrsipt.service';
+
+const ProjectConfigrations = (config: ConfigService) =>{
+
+  return () => {
+
+      config.LoadConfigrations();
+  }
+}
+
 
 @NgModule({
   declarations: [
@@ -26,8 +38,23 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
+    AgGridModule,
+    NbDialogModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    {
+
+      provide: APP_INITIALIZER,
+      useFactory:  ProjectConfigrations,
+      multi: true,
+      deps: [ConfigService]
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenIntrsiptService,
+      multi: true
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { 
