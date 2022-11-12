@@ -3,23 +3,58 @@
         فلتر البحث
     </nb-card-header>
     <nb-card-body>
-        <div class="row">
-            <div class="col">
-                <div class="feild-filter">
-                    <h3>اسم الحقل</h3>
-                    <select class="form-control input-sm">
-                        <option value="0">الكل</option>
-                    </select>
+        <form id="filterForm" #filterForm="ngForm" (ngSubmit)="OnFilterSubmit()">
+
+            <div class="row">
+                <div class="col">
+                    <div class="feild-filter">
+                        <h3>التاريخ</h3>
+                        <select name="DateType" [(ngModel)]="FilterObject.DateType" class="form-control input-sm">
+                            <option value="1">تاريخ الاضافة</option>
+                            <option value="2">تاريخ طلب الخدمة</option>
+                            <option value="3">تاريخ إدخال التقرير</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="feild-filter">
+                        <h3>المدة</h3>
+                        <select name="Duration" [(ngModel)]="FilterObject.Duration" class="form-control input-sm">
+                            <option value="1">اليوم</option>
+                            <option value="6">قبل اسبوع</option>
+                            <option value="10">اخر 10 ايام</option>
+                            <option value="30">اخر شهر</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-            <div class="col">
-                <div class="feild-filter">
-                    <h3>اسم الحقل</h3>
-                    <select class="form-control input-sm">
-                        <option value="0">الكل</option>
-                    </select>
+            <div class="row">
+                <div class="col">
+                    <div class="feild-filter">
+                        <h3>الفرع</h3>
+                        <select name="RefBranchID" [(ngModel)]="FilterObject.RefBranchID"  class="form-control input-sm">
+                            <option value="null">الكل</option>
+                            <option *ngFor="let b of Branches" value="{{b.BranchID_PK}}">{{b.BranchName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="feild-filter">
+                        <h3>الحالة</h3>
+                        <select name="ServiceStatusID" [(ngModel)]="FilterObject.ServiceStatusID"  class="form-control input-sm">
+                            <option value="null">الكل</option>
+                            <option value="10">قيد الانتظار</option>
+                            <option value="20">تم التكليف</option>
+                            <option value="30">قيد الانجاز</option>
+                            <option value="40">تم الانجاز</option>
+                            <option value="50">مغلقة</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
     </nb-card-body>
+    <nb-card-footer>
+        <button form="filterForm" nbButton type="submit" status="success">بحث</button>
+    </nb-card-footer>
 </nb-card>

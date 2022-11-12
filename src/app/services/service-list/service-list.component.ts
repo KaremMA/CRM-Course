@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
 import { ColDef } from 'ag-grid-community';
 import { ServiceService } from 'src/app/@services/Services/service.service';
+import { CreateServicesComponent } from './create-services/create-services.component';
 import { ServiceFilterComponent } from './service-filter/service-filter.component';
 
 @Component({
@@ -31,7 +32,7 @@ export class ServiceListComponent implements OnInit {
 
   FilterObject = {
     IsRange: false,
-    Duration: 10,
+    Duration: 1,
     DateType: 1,
     FromDate: '',
     ToDate: '',
@@ -61,7 +62,24 @@ export class ServiceListComponent implements OnInit {
 
   OpenFilter() {
 
-    this.dailgoService.open(ServiceFilterComponent);
+    this.dailgoService.open(ServiceFilterComponent, {
+      hasBackdrop: true,
+      closeOnEsc: true,
+      closeOnBackdropClick: true,
+      context: {
+        FilterObject: this.FilterObject
+      }
+    }).onClose.subscribe({
+      next: (filterResult) =>{
+        this.FilterObject = filterResult;
+        this.getServiceList();
+      }
+    });
+  }
+
+  CreateNewServices(){
+    
+    this.dailgoService.open(CreateServicesComponent)
   }
 
   onGridReady(params) {

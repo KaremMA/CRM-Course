@@ -1,0 +1,77 @@
+.card-filter {
+    width: 600px;
+    border: none !important;
+    overflow: hidden;
+}
+
+.card-header {
+    background-color: var(--color-info-600);
+    padding: 5px;
+    text-align: right;
+    color: #fff;
+}
+
+.feild-filter {
+
+    position: relative;
+    h3 {
+        font-size: 12px;
+        text-align: right;
+        font-weight: bold;
+        margin: 0;
+        margin-bottom: 5px;
+    }
+
+    .form-control{
+
+        text-align: right;
+        direction: rtl;
+    }
+
+    textarea{
+
+        height: 150px;
+        resize: none;
+    }
+
+    select.form-control {
+        
+        height: 38px;
+        font-size: 14px;
+        padding: 3px;
+        direction: rtl;
+    }
+
+    .search-result{
+
+        background-color: #FFF;
+        position: absolute;
+        top: 83px;
+        left: 0;
+        right: 0;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        z-index: 999;
+        border-radius: 5px;
+        padding: 10px;
+        height: 150px;
+        overflow: overlay;
+        .menu{
+
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            li{
+
+                padding: 5px 20px;
+                text-align: right;
+                border-bottom: 1px solid #EEE;
+                cursor: pointer;
+                user-select: none;
+                &:hover{
+
+                    background-color: #EEE;
+                }
+            }
+        }
+    }
+}

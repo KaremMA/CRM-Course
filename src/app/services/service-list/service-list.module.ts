@@ -7,13 +7,15 @@ import { FormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ServiceFilterComponent } from './service-filter/service-filter.component';
+import { CreateServicesComponent } from './create-services/create-services.component';
 
 
 
 @NgModule({
   declarations: [
     ServiceListComponent,
-    ServiceFilterComponent
+    ServiceFilterComponent,
+    CreateServicesComponent
   ],
   imports: [
     CommonModule,

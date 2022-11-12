@@ -1,0 +1,72 @@
+<nb-card class="card-filter">
+    <nb-card-header class="card-header">
+        إضافة خدمة
+    </nb-card-header>
+    <nb-card-body>
+        <form>
+            <div class="row">
+                <div class="col">
+                    <div class="feild-filter">
+                        <h3>التاريخ</h3>
+                        <input dir="rtl" (keypress)="onKeyPress($event)" type="text" (blur)="ShowResultMenu = false"
+                            class="form-control" name="customer">
+                        <div *ngIf="ShowResultMenu" class="search-result">
+                            <ul class="menu">
+                                <li>asdasdasd</li>
+                                <li>asdasdasd</li>
+                                <li>asdasdasd</li>
+                                <li>asdasdasd</li>
+                                <li>asdasdasd</li>
+                                <li>asdasdasd</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="feild-filter">
+                        <h3>رقم الهاتف</h3>
+                        <input class="form-control" type="text">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="feild-filter">
+                        <h3>المندوب</h3>
+                        <input class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="feild-filter">
+                        <h3>تاريخ الطلب</h3>
+                        <input class="form-control" type="date">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="feild-filter">
+                        <h3>نوع الخدمة</h3>
+                        <select class="form-control input-sm">
+                            <option value="1">اليوم</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="feild-filter">
+                        <h3>ملاجظة</h3>
+                        <textarea class="form-control text-end"></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </nb-card-body>
+    <nb-card-footer>
+        <button nbButton type="submit" status="success">بحث</button>
+    </nb-card-footer>
+</nb-card>
