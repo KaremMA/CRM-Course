@@ -3,21 +3,16 @@
         إضافة خدمة
     </nb-card-header>
     <nb-card-body>
-        <form>
+        <form [formGroup]="ServiceForm" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="col">
                     <div class="feild-filter">
-                        <h3>التاريخ</h3>
-                        <input dir="rtl" (keypress)="onKeyPress($event)" type="text" (blur)="ShowResultMenu = false"
+                        <h3>الفرع</h3>
+                        <input autocomplete="off" dir="rtl" (keypress)="onKeyPress($event)" type="text" (blur)="HideSearchResult()"
                             class="form-control" name="customer">
                         <div *ngIf="ShowResultMenu" class="search-result">
                             <ul class="menu">
-                                <li>asdasdasd</li>
-                                <li>asdasdasd</li>
-                                <li>asdasdasd</li>
-                                <li>asdasdasd</li>
-                                <li>asdasdasd</li>
-                                <li>asdasdasd</li>
+                                <li *ngFor="let c  of Customers" (click)="SaveCustomerData(c)">{{c.Name}}</li>
                             </ul>
                         </div>
                     </div>
@@ -28,13 +23,13 @@
                 <div class="col">
                     <div class="feild-filter">
                         <h3>رقم الهاتف</h3>
-                        <input class="form-control" type="text">
+                        <input formControlName="ApplicantPhoneNumber" class="form-control" type="text">
                     </div>
                 </div>
                 <div class="col">
                     <div class="feild-filter">
                         <h3>المندوب</h3>
-                        <input class="form-control" type="text">
+                        <input formControlName="ApplicantName" class="form-control" type="text">
                     </div>
                 </div>
             </div>
@@ -42,14 +37,14 @@
                 <div class="col">
                     <div class="feild-filter">
                         <h3>تاريخ الطلب</h3>
-                        <input class="form-control" type="date">
+                        <input formControlName="RequiredDate" class="form-control" type="date">
                     </div>
                 </div>
                 <div class="col">
                     <div class="feild-filter">
                         <h3>نوع الخدمة</h3>
-                        <select class="form-control input-sm">
-                            <option value="1">اليوم</option>
+                        <select formControlName="ServiceID_FK" class="form-control input-sm">
+                            <option value="0">اختر واحدة</option>
                         </select>
                     </div>
                 </div>
@@ -58,15 +53,15 @@
             <div class="row">
                 <div class="col">
                     <div class="feild-filter">
-                        <h3>ملاجظة</h3>
-                        <textarea class="form-control text-end"></textarea>
+                        <h3>ملاحظة</h3>
+                        <textarea formControlName="Note" class="form-control text-end"></textarea>
                     </div>
                 </div>
             </div>
-
         </form>
     </nb-card-body>
     <nb-card-footer>
-        <button nbButton type="submit" status="success">بحث</button>
+        <button nbButton type="submit" status="success">إضافة</button>
+        <button nbButton type="submit" class="ms-2" status="danger">إغلاق</button>
     </nb-card-footer>
 </nb-card>
