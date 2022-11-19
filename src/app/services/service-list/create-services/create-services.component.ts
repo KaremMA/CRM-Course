@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NbDialogRef, NbToastrService } from '@nebular/theme';
 import { CustomersService } from 'src/app/@services/customers/customers.service';
+import { ServiceService } from 'src/app/@services/Services/service.service';
 
 @Component({
   selector: 'app-create-services',
@@ -10,7 +12,10 @@ import { CustomersService } from 'src/app/@services/customers/customers.service'
 export class CreateServicesComponent implements OnInit {
 
   constructor(
-    private customersService: CustomersService
+    private customersService: CustomersService,
+    private services:ServiceService,
+    private toaster:NbToastrService,
+    private dailogref: NbDialogRef<any>
   ) { }
 
   ShowResultMenu = false;
@@ -34,12 +39,42 @@ export class CreateServicesComponent implements OnInit {
     ApplicantPhoneNumber: new FormControl('')
   })
 
+
+  ServicesModule = [];
+  
   ngOnInit(): void {
   }
 
 
   onSubmit(){
 
+
+    var ServiceObject = this.ServiceForm.getRawValue();
+    ServiceObject.branchesIDs = [this.SelectedCustomer.BranchID_PK];
+
+    console.log(ServiceObject);
+    this.services.AddNewService(ServiceObject)
+    .subscribe({
+      next: (res) =>{
+
+        if(res.StatusCode == 200){
+          this.toaster.success("تمت العملية", "تمت عملية إضافة الخدمة بنجاح");
+          this.dailogref.close(true);
+        }else{
+
+          this.toaster.danger("حدث خطأ", res.Message)
+        }
+
+        console.log(res);
+        
+      }
+    })
+    
+  }
+
+  close(){
+
+    this.dailogref.close(false);
 
   }
 
@@ -61,15 +96,42 @@ export class CreateServicesComponent implements OnInit {
       })
   }
 
-  SaveCustomerData(CustomerObject){
+  SaveCustomerData(CustomerObject, branch){
+
+
+    console.log(branch);
+    
+    branch.value = CustomerObject.Name;
 
     this.SelectedCustomer = CustomerObject;
 
     this.ServiceForm.get("ApplicantName").setValue(CustomerObject.BranchMangerName)
     this.ServiceForm.get("ApplicantPhoneNumber").setValue(CustomerObject.BranchMangerPhoneNumber)
+    this.ServiceForm.get("ServiceID_FK").setValue(0)
 
     console.log(CustomerObject);
     
+    this.getServiceModule(CustomerObject.SystemModulesID_FK)
+  }
+
+  getServiceModule(SystemModulesID_FK){
+
+    this.services.getServicesBySystemModule(SystemModulesID_FK)
+    .subscribe({
+      next: (res) => {
+
+        console.log(res);
+        
+        if(res.StatusCode == 200) {
+
+          this.ServicesModule = res.JsonArray;
+
+        }else{
+          
+          this.toaster.danger("حدث خطأ", res.Message);
+        }
+      }
+    })
   }
 
   HideSearchResult(){

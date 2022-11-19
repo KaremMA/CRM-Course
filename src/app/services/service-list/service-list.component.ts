@@ -79,7 +79,15 @@ export class ServiceListComponent implements OnInit {
 
   CreateNewServices(){
     
-    this.dailgoService.open(CreateServicesComponent)
+    this.dailgoService.open(CreateServicesComponent).onClose
+    .subscribe({
+      next: (res) =>{
+
+        if(!res) return;
+
+        this.getServiceList();
+      }
+    })
   }
 
   onGridReady(params) {

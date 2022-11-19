@@ -3,16 +3,16 @@
         إضافة خدمة
     </nb-card-header>
     <nb-card-body>
-        <form [formGroup]="ServiceForm" (ngSubmit)="onSubmit()">
+        <form id="ServiceForm" [formGroup]="ServiceForm" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="col">
                     <div class="feild-filter">
                         <h3>الفرع</h3>
-                        <input autocomplete="off" dir="rtl" (keypress)="onKeyPress($event)" type="text" (blur)="HideSearchResult()"
+                        <input #branch autocomplete="off" dir="rtl" (keyup)="onKeyPress($event)" type="text" (blur)="HideSearchResult()"
                             class="form-control" name="customer">
                         <div *ngIf="ShowResultMenu" class="search-result">
                             <ul class="menu">
-                                <li *ngFor="let c  of Customers" (click)="SaveCustomerData(c)">{{c.Name}}</li>
+                                <li *ngFor="let c  of Customers" (click)="SaveCustomerData(c, branch)">{{c.Name}}</li>
                             </ul>
                         </div>
                     </div>
@@ -45,6 +45,9 @@
                         <h3>نوع الخدمة</h3>
                         <select formControlName="ServiceID_FK" class="form-control input-sm">
                             <option value="0">اختر واحدة</option>
+                            <option *ngFor="let s of ServicesModule" [value]="s.ServiceID_PK">{{s.ServiceCaption}}</option>
+
+                            
                         </select>
                     </div>
                 </div>
@@ -61,7 +64,7 @@
         </form>
     </nb-card-body>
     <nb-card-footer>
-        <button nbButton type="submit" status="success">إضافة</button>
-        <button nbButton type="submit" class="ms-2" status="danger">إغلاق</button>
+        <button form="ServiceForm" nbButton type="submit" status="success">إضافة</button>
+        <button nbButton (click)="close()" type="button" class="ms-2" status="danger">إغلاق</button>
     </nb-card-footer>
 </nb-card>

@@ -17,4 +17,14 @@ export class ServiceService {
 
     return this.http.post(`${this.config.getAPILink()}/api/Services/Requests/Get`, ServiceFilter)
   }
+
+  getServicesBySystemModule(SystemModelID_PK):Observable<any>{
+
+    return this.http.get(`${this.config.getAPILink()}/api/Services/Get/SystemModuleID/${SystemModelID_PK}`)
+  }
+
+  AddNewService(ServiceObject):Observable<any>{
+
+    return this.http.post(`${this.config.getAPILink()}/api/Services/Add`, ServiceObject)
+  }
 }
