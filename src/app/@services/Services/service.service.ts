@@ -27,4 +27,9 @@ export class ServiceService {
 
     return this.http.post(`${this.config.getAPILink()}/api/Services/Add`, ServiceObject)
   }
+
+  DeleteService(ServiceID):Observable<any>{
+
+    return this.http.delete(`${this.config.getAPILink()}/api/Services/Remove/${ServiceID}`)
+  }
 }

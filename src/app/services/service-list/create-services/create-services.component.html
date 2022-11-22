@@ -23,13 +23,21 @@
                 <div class="col">
                     <div class="feild-filter">
                         <h3>رقم الهاتف</h3>
-                        <input formControlName="ApplicantPhoneNumber" class="form-control" type="text">
+                        <input [class.invalid]="ServiceForm.get('ApplicantPhoneNumber').invalid && ServiceForm.get('ApplicantPhoneNumber').touched" formControlName="ApplicantPhoneNumber" class="form-control" type="text">
+                        <small *ngIf="ServiceForm.get('ApplicantPhoneNumber').invalid && ServiceForm.get('ApplicantPhoneNumber').touched"  class="text-danger text-end d-block w-100">
+                            {{
+                                ServiceForm.get('ApplicantPhoneNumber').errors?.['PhoneError']
+                            }}
+                        </small>
                     </div>
                 </div>
                 <div class="col">
                     <div class="feild-filter">
                         <h3>المندوب</h3>
-                        <input formControlName="ApplicantName" class="form-control" type="text">
+                        <input  [class.invalid]="ServiceForm.get('ApplicantName').invalid && ServiceForm.get('ApplicantName').touched" formControlName="ApplicantName" class="form-control" type="text">
+                        <small *ngIf="ServiceForm.get('ApplicantName').invalid && ServiceForm.get('ApplicantName').touched"  class="text-danger text-end d-block w-100">
+                            هذا الحقل إجبارى
+                        </small>
                     </div>
                 </div>
             </div>
@@ -37,18 +45,24 @@
                 <div class="col">
                     <div class="feild-filter">
                         <h3>تاريخ الطلب</h3>
-                        <input formControlName="RequiredDate" class="form-control" type="date">
+                        <input [class.invalid]="ServiceForm.get('RequiredDate').invalid && ServiceForm.get('RequiredDate').touched" formControlName="RequiredDate" class="form-control" type="date">
+                        <small *ngIf="ServiceForm.get('RequiredDate').invalid && ServiceForm.get('RequiredDate').touched"  class="text-danger text-end d-block w-100">
+                            هذا الحقل إجبارى
+                        </small>
                     </div>
                 </div>
                 <div class="col">
                     <div class="feild-filter">
                         <h3>نوع الخدمة</h3>
-                        <select formControlName="ServiceID_FK" class="form-control input-sm">
+                        <select [class.invalid]="ServiceForm.get('ServiceID_FK').invalid && ServiceForm.get('ServiceID_FK').touched" formControlName="ServiceID_FK" class="form-control input-sm">
                             <option value="0">اختر واحدة</option>
                             <option *ngFor="let s of ServicesModule" [value]="s.ServiceID_PK">{{s.ServiceCaption}}</option>
-
-                            
                         </select>
+                        <small *ngIf="ServiceForm.get('ServiceID_FK').invalid && ServiceForm.get('ServiceID_FK').touched"  class="text-danger text-end d-block w-100">
+                            {{
+                                ServiceForm.get('ServiceID_FK').errors?.['SelectError']
+                            }}
+                        </small>
                     </div>
                 </div>
             </div>
@@ -57,7 +71,7 @@
                 <div class="col">
                     <div class="feild-filter">
                         <h3>ملاحظة</h3>
-                        <textarea formControlName="Note" class="form-control text-end"></textarea>
+                        <textarea placeholder="(إختيارى)" formControlName="Note" class="form-control text-end"></textarea>
                     </div>
                 </div>
             </div>

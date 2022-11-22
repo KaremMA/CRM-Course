@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NbDialogRef, NbToastrService } from '@nebular/theme';
 import { CustomersService } from 'src/app/@services/customers/customers.service';
+import { FormValidationService } from 'src/app/@services/form-validation.service';
 import { ServiceService } from 'src/app/@services/Services/service.service';
 
 @Component({
@@ -15,7 +16,8 @@ export class CreateServicesComponent implements OnInit {
     private customersService: CustomersService,
     private services:ServiceService,
     private toaster:NbToastrService,
-    private dailogref: NbDialogRef<any>
+    private dailogref: NbDialogRef<any>,
+    private validation:FormValidationService
   ) { }
 
   ShowResultMenu = false;
@@ -31,22 +33,49 @@ export class CreateServicesComponent implements OnInit {
   
   ServiceForm = new FormGroup({
 
-    ServiceID_FK: new FormControl(0, Validators.required),
+    ServiceID_FK: new FormControl(0, [Validators.required, this.validation.ValidateSelectInput]),
     Note: new FormControl(''),
-    RequiredDate: new FormControl(new Date()),
+    RequiredDate: new FormControl(new Date(), Validators.required),
     branchesIDs: new FormControl(),
-    ApplicantName: new FormControl(''),
-    ApplicantPhoneNumber: new FormControl('')
+    ApplicantName: new FormControl('', Validators.required),
+    ApplicantPhoneNumber: new FormControl('', [Validators.required, this.validation.ValidatePhoneNumber])
   })
 
 
   ServicesModule = [];
   
   ngOnInit(): void {
+    
+  }
+
+  
+  MarkInvalidControls() {
+
+    const controls = this.ServiceForm.controls;
+
+    for (const name in controls) {
+      if (controls[name].invalid) {
+        
+        controls[name].markAsTouched({ onlySelf: true });
+      }
+    }
+
   }
 
 
   onSubmit(){
+
+    if(this.SelectedCustomer == null){
+
+      this.toaster.warning("تنبية", "الرجاء تحديد زبون لتكملة العملية");
+      return;
+    }
+
+    if(this.ServiceForm.invalid){
+     
+      this.MarkInvalidControls()
+      return;
+    }
 
 
     var ServiceObject = this.ServiceForm.getRawValue();

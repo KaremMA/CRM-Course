@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NbDialogService } from '@nebular/theme';
+import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { ColDef } from 'ag-grid-community';
 import { ServiceService } from 'src/app/@services/Services/service.service';
 import { CreateServicesComponent } from './create-services/create-services.component';
@@ -14,7 +14,8 @@ export class ServiceListComponent implements OnInit {
 
   constructor(
     private dailgoService: NbDialogService,
-    private services: ServiceService
+    private services: ServiceService,
+    private toaster:NbToastrService
   ) { }
 
   private gridApi: any;
@@ -88,6 +89,38 @@ export class ServiceListComponent implements OnInit {
         this.getServiceList();
       }
     })
+  }
+
+  DeleteService(){
+
+    const selectedData = this.gridApi.getSelectedRows();
+
+    console.log(selectedData);
+    
+    if(selectedData.length == 0){
+
+      this.toaster.warning("تنبية", "please Select Service to Delete");
+      return;
+    }
+
+    this.services.DeleteService(selectedData[0].ServiceRequestID_PK)
+    .subscribe({
+      next: (res) =>{
+
+        if(res.StatusCode == 200){
+
+          this.toaster.success("تمت العملية", "تمت عملية الحدف");
+          // this.getServiceList();
+          this.rowData = this.rowData.filter(v => v.ServiceRequestID_PK != selectedData[0].ServiceRequestID_PK)
+
+        }else{
+
+          this.toaster.danger("حذث خطأ", res.Message);
+
+        }
+      }
+    })
+    
   }
 
   onGridReady(params) {
