@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { ColDef } from 'ag-grid-community';
 import { ServiceService } from 'src/app/@services/Services/service.service';
@@ -15,7 +16,8 @@ export class ServiceListComponent implements OnInit {
   constructor(
     private dailgoService: NbDialogService,
     private services: ServiceService,
-    private toaster:NbToastrService
+    private toaster:NbToastrService,
+    private router:Router
   ) { }
 
   private gridApi: any;
@@ -51,7 +53,7 @@ export class ServiceListComponent implements OnInit {
 
   getServiceList() {
 
-    this.services.getServicesList(this.FilterObject)
+      this.services.getServicesList(this.FilterObject)
       .subscribe({
         next: (res) => {
 
@@ -59,6 +61,7 @@ export class ServiceListComponent implements OnInit {
           console.log(res);
         }
       })
+
   }
 
   OpenFilter() {
@@ -121,6 +124,13 @@ export class ServiceListComponent implements OnInit {
       }
     })
     
+  }
+
+  ShowCustomerData(CustomerData){
+
+    console.log(CustomerData);
+    
+    this.router.navigateByUrl(`/home/services/service-details/${CustomerData.data.ServiceRequestID_PK}`)
   }
 
   onGridReady(params) {

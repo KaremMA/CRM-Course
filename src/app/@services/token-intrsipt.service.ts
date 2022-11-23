@@ -21,6 +21,6 @@ export class TokenIntrsiptService {
       },
     });
 
-    return next.handle(newRequst)
+    return next.handle(newRequst);
   }
 }
