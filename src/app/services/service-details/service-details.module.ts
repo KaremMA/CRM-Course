@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ServiceDetailsRoutingModule } from './service-details-routing.module';
 import { ServiceDetailsComponent } from './service-details.component';
+import { NbCardModule, NbInputModule } from '@nebular/theme';
 
 
 @NgModule({
@@ -11,7 +12,9 @@ import { ServiceDetailsComponent } from './service-details.component';
   ],
   imports: [
     CommonModule,
-    ServiceDetailsRoutingModule
+    ServiceDetailsRoutingModule,
+    NbCardModule,
+    NbInputModule
   ]
 })
 export class ServiceDetailsModule { }

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { ColDef } from 'ag-grid-community';
 import { ServiceService } from 'src/app/@services/Services/service.service';
+import { MessageBoxComponent } from 'src/app/sheard/message-box/message-box.component';
 import { CreateServicesComponent } from './create-services/create-services.component';
 import { ServiceFilterComponent } from './service-filter/service-filter.component';
 
@@ -94,8 +95,9 @@ export class ServiceListComponent implements OnInit {
     })
   }
 
-  DeleteService(){
+  ConfermDelete(){
 
+    
     const selectedData = this.gridApi.getSelectedRows();
 
     console.log(selectedData);
@@ -106,7 +108,46 @@ export class ServiceListComponent implements OnInit {
       return;
     }
 
-    this.services.DeleteService(selectedData[0].ServiceRequestID_PK)
+    if(selectedData[0].ServiseStatusID_FK != 10){
+
+      this.ShowMessage();
+      return;
+    }
+
+    this.dailgoService.open(MessageBoxComponent, {
+      autoFocus: false,
+      context: {
+        Title: 'تأكيد العملية',
+        Message: 'هل انت متأكد من عملية الحدف؟',
+        OpenType: 'YESNO'
+      }
+    }).onClose.subscribe({
+      next: (res) =>{
+
+        if(!res) return;
+
+        this.DeleteService(selectedData[0].ServiceRequestID_PK)
+      }
+    })
+
+  }
+
+  ShowMessage(){
+
+    this.dailgoService.open(MessageBoxComponent, {
+      autoFocus: false,
+      context: {
+        Title: 'لا يمكن إتمام العملية',
+        Message: 'يمكن فقط حدف الخدمة اذا كانت حالتها قيد الانتظار!',
+        OpenType: 'ONLYOK'
+      }
+    })
+  }
+
+  DeleteService(ServiceRequestID_PK){
+
+
+    this.services.DeleteService(ServiceRequestID_PK)
     .subscribe({
       next: (res) =>{
 
@@ -114,7 +155,7 @@ export class ServiceListComponent implements OnInit {
 
           this.toaster.success("تمت العملية", "تمت عملية الحدف");
           // this.getServiceList();
-          this.rowData = this.rowData.filter(v => v.ServiceRequestID_PK != selectedData[0].ServiceRequestID_PK)
+          this.rowData = this.rowData.filter(v => v.ServiceRequestID_PK != ServiceRequestID_PK)
 
         }else{
 

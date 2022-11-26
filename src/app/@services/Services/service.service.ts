@@ -32,4 +32,9 @@ export class ServiceService {
 
     return this.http.delete(`${this.config.getAPILink()}/api/Services/Remove/${ServiceID}`)
   }
+
+  getServiceDetails(ServiceRequestID_PK):Observable<any>{
+
+    return this.http.get(`${this.config.getAPILink()}/api/Services/Requests/Get/${ServiceRequestID_PK}`)
+  }
 }

@@ -1,0 +1,33 @@
+
+.message-card{
+
+    width: 550px;
+    border: none !important;
+    .header{
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--color-primary-600);
+    
+        .title{
+    
+            font-size: 14px;
+            font-weight: bold;
+            color: #FFF;
+        }
+
+        button fa-icon{
+
+            font-size: 20px;
+            color: #FFF;
+        }
+    }
+
+    .message-body{
+
+        text-align: right;
+        font-size: 14px;
+        font-weight: bold;
+    }
+}

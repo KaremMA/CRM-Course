@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './main-components/header/header.component';
 import { SidebarComponent } from './main-components/sidebar/sidebar.component';
-import { NbActionsModule, NbContextMenuModule, NbMenuModule, NbUserModule } from '@nebular/theme';
+import { NbActionsModule, NbButtonModule, NbCardModule, NbContextMenuModule, NbMenuModule, NbUserModule } from '@nebular/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MessageBoxComponent } from './message-box/message-box.component';
 
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    SidebarComponent
+    SidebarComponent,
+    MessageBoxComponent
   ],
   imports: [
     CommonModule,
@@ -18,7 +20,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NbUserModule,
     FontAwesomeModule,
     NbMenuModule,
-    NbContextMenuModule
+    NbContextMenuModule,
+    NbCardModule,
+    NbButtonModule
   ], 
   exports: [
     SidebarComponent,

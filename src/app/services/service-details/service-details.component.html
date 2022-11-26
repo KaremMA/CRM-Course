@@ -1,1 +1,58 @@
-<p>service-details works!</p>
+<nb-card>
+    <nb-card-body>
+        <div class="row">
+            <div class="col">
+                <h3 class="feaild-name">اسم المندوب</h3>
+                <input value="{{ServiceDetails?.ApplicantName}}" class="form-control" type="text" disabled>
+            </div>
+
+            <div class="col">
+                <h3 class="feaild-name">اسم الفرع</h3>
+                <input value="{{ServiceDetails?.BranchName}}" class="form-control" type="text" disabled>
+            </div>
+
+            <div class="col">
+                <h3 class="feaild-name">الشركة</h3>
+                <input value="{{ServiceDetails?.CurrentBranchName}}" class="form-control" type="text" disabled>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3 class="feaild-name">تاريخ طلب الخدمة</h3>
+                <input value="{{ServiceDetails?.RequiredDate}}" class="form-control" type="text" disabled>
+            </div>
+
+            <div class="col">
+                <h3 class="feaild-name">النظام</h3>
+                <input  value="{{ServiceDetails?.SystemName}}" class="form-control" type="text" disabled>
+            </div>
+
+            <div class="col">
+                <h3 class="feaild-name">رقم الهاتف</h3>
+                <input value="{{ServiceDetails?.ApplicantPhoneNumber}}" class="form-control" type="text" disabled>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3 class="feaild-name">رقم الطلب</h3>
+                <input value="{{ServiceDetails?.ServiceRequestID_PK}}"  class="form-control" type="text" disabled>
+            </div>
+
+            <div class="col">
+                <h3 class="feaild-name">حالة الخدمة</h3>
+                <input value="{{ServiceDetails?.ServiceStatusCaption}}"  class="form-control" type="text" disabled>
+            </div>
+
+            <div class="col">
+                <h3 class="feaild-name">نوع الخدمة</h3>
+                <input value="{{ServiceDetails?.ServiceCaption}}" class="form-control" type="text" disabled>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h3 class="feaild-name">ملاحظة</h3>
+                <textarea disabled class="form-control">{{ServiceDetails?.Note}}</textarea>
+            </div>
+        </div>
+    </nb-card-body>
+</nb-card>

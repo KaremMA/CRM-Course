@@ -1,0 +1,18 @@
+<nb-card class="message-card">
+    <nb-card-header class="header p-2">
+        <button (click)="close(false)" size="small" nbButton appearance="ghost"><fa-icon [icon]="['fas', 'times']"></fa-icon></button>
+        <h3 class="title">{{Title}}</h3>
+    </nb-card-header>
+    <nb-card-body class="message-body">
+        {{Message}}
+    </nb-card-body>
+    <nb-card-footer class="p-2">
+        <div *ngIf="OpenType == 'YESNO'" class="yesno">
+            <button (click)="close(true)" nbButton status="success" size="small">نعم</button>
+            <button (click)="close(false)" nbButton class="ms-2" status="danger" size="small">لا</button>
+        </div>
+        <div *ngIf="OpenType == 'ONLYOK'" class="onlyok">
+            <button (click)="close(false)" nbButton status="success" size="small">موافق</button>
+        </div>
+    </nb-card-footer>
+</nb-card>
