@@ -1,6 +1,6 @@
 import { HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 import { AuthService } from './Auht/auth.service';
 
 @Injectable({
@@ -21,6 +21,10 @@ export class TokenIntrsiptService {
       },
     });
 
-    return next.handle(newRequst);
+    return next.handle(newRequst).pipe(
+      finalize(() =>{
+
+      })
+    );
   }
 }

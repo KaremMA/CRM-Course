@@ -17,4 +17,6 @@ export class CustomersService {
 
     return this.http.post(`${this.config.getAPILink()}/api/CustomersBO/Branches/SearchValue`, SearchObject)
   }
+
+  
 }

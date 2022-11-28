@@ -1,1 +1,23 @@
-<p>customers-list works!</p>
+<nb-card class="h-100">
+
+    <nb-card-header>
+        <div class="card-header">
+            <div class="actions">
+                <button nbButton size="small" status="danger"><fa-icon [icon]="['fas', 'trash']"></fa-icon></button>
+                <button class="ms-2" nbButton size="small" status="info"><fa-icon [icon]="['fas', 'sync']"></fa-icon></button>
+                <button class="ms-2" nbButton size="small" status="primary"><fa-icon [icon]="['fas', 'filter']"></fa-icon></button>
+            </div>
+            <div class="shearch">
+                <button class="me-2" (click)="onSearchClick()" nbButton size="small" status="primary"><fa-icon [icon]="['fas', 'search']"></fa-icon></button>
+                <input nbInput [(ngModel)]="searchvalue.SearchValue" type="text" fieldSize="small">
+            </div>
+        </div>
+    </nb-card-header>
+    <nb-card-body>
+        <ag-grid-angular #agGrid id="agGrid" class="ag-theme-alpine text-end customer-list-grid" [rowData]="rowData"
+            [rowSelection]="'single'" [headerHeight]="35" [rowHeight]="35"
+            [overlayNoRowsTemplate]="'لا يوجد خدمات لعرضها'" style="width: 100%; height:100%;"
+            [defaultColDef]="defaultColDef" [columnDefs]="columnDefs" (gridReady)="onGridReady($event)">
+        </ag-grid-angular>
+    </nb-card-body>
+</nb-card>
