@@ -1,0 +1,18 @@
+.card-filter{
+
+    width: 500px;
+    border: none;
+    nb-card-header{
+        background-color: var(--color-primary-600);
+        text-align: right;
+        color: #FFF;
+    }
+
+    h3{
+
+        font-size: 12px;
+        margin-bottom: 5px;
+        width: 100%;
+        text-align: right;
+    }
+}

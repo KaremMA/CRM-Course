@@ -7,11 +7,13 @@ import { NbButtonModule, NbCardModule, NbInputModule } from '@nebular/theme';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormsModule } from '@angular/forms';
 import { AgGridModule } from 'ag-grid-angular';
+import { CustomersFilterComponent } from './customers-filter/customers-filter.component';
 
 
 @NgModule({
   declarations: [
-    CustomersListComponent
+    CustomersListComponent,
+    CustomersFilterComponent
   ],
   imports: [
     CommonModule,

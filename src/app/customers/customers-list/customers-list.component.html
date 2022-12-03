@@ -3,9 +3,9 @@
     <nb-card-header>
         <div class="card-header">
             <div class="actions">
-                <button nbButton size="small" status="danger"><fa-icon [icon]="['fas', 'trash']"></fa-icon></button>
+                <button (click)="ConfermDelete()" nbButton size="small" status="danger"><fa-icon [icon]="['fas', 'trash']"></fa-icon></button>
                 <button class="ms-2" nbButton size="small" status="info"><fa-icon [icon]="['fas', 'sync']"></fa-icon></button>
-                <button class="ms-2" nbButton size="small" status="primary"><fa-icon [icon]="['fas', 'filter']"></fa-icon></button>
+                <button (click)="OpenFilter()" class="ms-2" nbButton size="small" status="primary"><fa-icon [icon]="['fas', 'filter']"></fa-icon></button>
             </div>
             <div class="shearch">
                 <button class="me-2" (click)="onSearchClick()" nbButton size="small" status="primary"><fa-icon [icon]="['fas', 'search']"></fa-icon></button>

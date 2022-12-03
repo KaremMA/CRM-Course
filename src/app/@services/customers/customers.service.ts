@@ -17,6 +17,15 @@ export class CustomersService {
 
     return this.http.post(`${this.config.getAPILink()}/api/CustomersBO/Branches/SearchValue`, SearchObject)
   }
-
   
+  DeleteCustomers(CompanyID_PK):Observable<any>{
+
+    return this.http.delete(`${this.config.getAPILink()}/api/CustomersBO/Company/Remove/${CompanyID_PK}`)
+  }
+
+  getByFilter(obj): Observable<any>{
+
+    return this.http.post(`${this.config.getAPILink()}/api/CustomersBO/Companies/AdvancedSearch` ,obj)
+
+   }
 }

@@ -49,10 +49,17 @@ export class ServiceListComponent implements OnInit {
 
   ngOnInit(): void {
 
+    if(!!localStorage.getItem("getServicesList")){
+
+      this.FilterObject = JSON.parse(localStorage.getItem("getServicesList"));
+    }
+
     this.getServiceList();
   }
 
   getServiceList() {
+
+    localStorage.setItem("getServicesList", JSON.stringify(this.FilterObject))
 
       this.services.getServicesList(this.FilterObject)
       .subscribe({
