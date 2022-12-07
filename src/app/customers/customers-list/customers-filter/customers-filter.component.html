@@ -3,38 +3,43 @@
         فلتر
     </nb-card-header>
     <nb-card-body>
-
-        <div class="row">
-            <div class="col">
-                <h3>المدينة</h3>
-                <select class="form-control">
-                    <option value="0">حدد واحدة</option>
-                </select>
+        <form id="advanchedFilter" [formGroup]="advanchedFilter" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col">
+                    <h3>المدينة</h3>
+                    <select formControlName="CityID" class="form-control">
+                        <option value="0">حدد واحدة</option>
+                        <option *ngFor="let c of Cities" [value]="c.CityID_PK">{{c.Name}}</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <h3>نوع النشاط</h3>
+                    <select  formControlName="ActivityID" class="form-control">
+                        <option value="0">حدد واحدة</option>
+                        <option *ngFor="let a of Activities" [value]="a.ActivityID_PK">{{a.Caption}}</option>
+                    </select>
+                </div>
             </div>
-            <div class="col">
-                <h3>نوع النشاط</h3>
-                <select class="form-control">
-                    <option value="0">حدد واحدة</option>
-                </select>
+            <div class="row">
+                <div class="col">
+                    <h3>النظام</h3>
+                    <select formControlName="SystemModuleID" class="form-control">
+                        <option value="0">حدد واحدة</option>
+                        <option *ngFor="let s of SystemModule" [value]="s.SystemModuleID_PK">{{s.SystemName}}</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <h3>المنتج</h3>
+                    <select formControlName="ProductID" class="form-control">
+                        <option value="0">حدد واحدة</option>
+                        <option *ngFor="let p of Products" [value]="p.ProductID_PK">{{p.ProductName}}</option>
+                    </select>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <h3>النظام</h3>
-                <select class="form-control">
-                    <option value="0">حدد واحدة</option>
-                </select>
-            </div>
-            <div class="col">
-                <h3>المنتج</h3>
-                <select class="form-control">
-                    <option value="0">حدد واحدة</option>
-                </select>
-            </div>
-        </div>
+        </form>
     </nb-card-body>
     <nb-card-footer>
-        <button nbButton status="success">بحث</button>
-        <button nbButton status="danger" class="ms-3">إغلاق</button>
+        <button form="advanchedFilter" nbButton status="success">بحث</button>
+        <button (click)="close()" nbButton status="danger" class="ms-3">إغلاق</button>
     </nb-card-footer>
 </nb-card>

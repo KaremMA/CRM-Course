@@ -69,7 +69,15 @@ export class CustomersListComponent implements OnInit {
 
   OpenFilter(){
 
-    this.dailogService.open(CustomersFilterComponent)
+    this.dailogService.open(CustomersFilterComponent).onClose
+    .subscribe({
+      next: (res) => {
+
+        if(!res) return;
+
+        this.rowData = res;
+      }
+    })
   }
 
   ConfermDelete(){
